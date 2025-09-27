@@ -4,9 +4,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const env = require('dotenv');
-env.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Load .env only in development
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 // Middleware
